@@ -6,6 +6,7 @@ r_p = sym('r_p');
 phi_p = sym('phi_p');
 psi_p = sym('psi_p');
 x_p = [beta_p, p_p, r_p, phi_p, psi_p]
+Wa=0;
 %Variables de estado_
 beta = sym('beta');
 p = sym('p');
