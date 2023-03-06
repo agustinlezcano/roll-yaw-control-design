@@ -19,7 +19,7 @@ delta_a =sym('delta_a');
 delta_r =sym('delta_r');
 u = [delta_a, delta_r]
 %valor de lambda para filtro IIR (Leaky Integrator)
-lambda = 0.5;
+lambda = 0.9;
 
 %Matriz A
 A = [-0.0558 0.08 -0.997 0.0415 0.0033;
@@ -108,9 +108,17 @@ KI = Kai(:,6:7)
 %Covarianzas de ruido de proceso y de ruido de sensor
 Qk_coef = 1.5;
 % Qk = Qk_coef*eye(2);
-Qk = [2.5e-2 0;0 1e-1]
+Qk = [2.5e-1 0;0 1e-1]
 %Qk = [1.5 0; 0 1.1];
 %Qk = 1;
 Rk = [0.0001 0; 0 0.0001]; %Funciona mejor que la covarianza igual a 1
 %Rk = [1 0; 0 1];
 [kalmf,L,~,Mx,Z] = kalman(sys,Qk,Rk)
+
+%Obtengo los polos a lazo cerrado del sistema
+% F = ((Aaug - Baug*Kaug)^(-1))*Baug;
+% s = sym('s');
+% I = eye(7);
+% eqn = det(s*I - (Aaug - Baug*F)) == 0;
+% S=solve(eqn)
+
